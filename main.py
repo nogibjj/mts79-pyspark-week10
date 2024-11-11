@@ -12,6 +12,7 @@ from mylib.lib import (
     example_transform,
 )
 
+
 def process_csv_spark():
     # Download the births dataset CSV
     extract_csv(
@@ -45,7 +46,7 @@ def process_csv_spark():
         """,
         name="Births",
     )
-    
+
     # Describe the dataset
     describe(df)
 

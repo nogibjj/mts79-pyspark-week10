@@ -8,6 +8,7 @@ from mylib.lib import (
 )
 import os
 
+
 @pytest.fixture(scope="module")
 def spark():
     # Start a Spark session
@@ -16,17 +17,20 @@ def spark():
     # Stop the Spark session after tests
     spark.stop()
 
+
 def test_start_spark(spark):
     # Test Spark session is started
     assert spark is not None
 
+
 def test_extract_csv():
     output_path = extract_csv(
-        url="URL_TO_CSV_FILE",  # Replace with the actual URL of your births dataset
+        url="https://github.com/fivethirtyeight/data/raw/refs/heads/master/births/US_births_2000-2014_SSA.csv",
         file_path="test_births.csv",
         directory="data",
     )
     assert os.path.exists(output_path), "CSV file was not extracted as expected."
+
 
 def test_load_data(spark):
     # Try loading data and perform a simple check
@@ -37,11 +41,17 @@ def test_load_data(spark):
     assert "year" in df.columns, "Expected column 'year' not found in DataFrame."
     assert "month" in df.columns, "Expected column 'month' not found in DataFrame."
 
+
 def test_query(spark):
     df = load_data(spark, data="data/test_births.csv")
     # Run a basic query to test SQL functionality
-    res = query(spark, df, query="SELECT year, month, SUM(births) as total_births FROM temp_table GROUP BY year, month")
+    res = query(
+        spark,
+        df,
+        query="SELECT year, month, SUM(births) as total_births FROM temp_table GROUP BY year, month",
+    )
     assert res is None, "Query function did not execute as expected."
+
 
 def test_describe(spark):
     df = load_data(spark, data="data/test_births.csv")
