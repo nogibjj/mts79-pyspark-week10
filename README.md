@@ -1,4 +1,6 @@
 # mts79-pyspark-week10
+[![CI](https://github.com/nogibjj/mts79-pyspark-week10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/mts79-pyspark-week10/actions/workflows/cicd.yml)
+
 ## Births Data Analysis with PySpark
 
 This repository contains materials and code for processing and analyzing births data using PySpark. The project focuses on data transformation, analysis, and query execution on a dataset of births, and applies advanced techniques for data manipulation and analysis using Spark.
@@ -85,3 +87,9 @@ To run the tests for the project, use the following command:
 
 ```bash
 make tests
+```
+
+## Related Images
+![alt text](2024-11-10.png)
+
+![alt text](<2024-11-10 (1).png>)
