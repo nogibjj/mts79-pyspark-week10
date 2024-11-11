@@ -1,12 +1,12 @@
 import os
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import when
 from pyspark.sql.functions import concat_ws
 import requests
 from pyspark.sql.types import (
     StructType,
     StructField,
     IntegerType,
-    StringType,
 )
 
 def start_spark(appName):
@@ -49,11 +49,13 @@ def describe(df):
     return df.describe().show()
 
 def example_transform(df):
-    # Example transformation: Combine year, month, and date_of_month into a single date string
-    df = df.withColumn("full_date", concat_ws("-", df["year"], df["month"], df["date_of_month"]))
+    # Combine year, month, and date_of_month into a single date string
+    df = df.withColumn("full_date", concat_ws("-", df["year"], df["month"],
+                                              df["date_of_month"]))
 
-    # Example transformation: Classify day_of_week as weekend or weekday
+    # Classify day_of_week as weekend or weekday
     df = df.withColumn("day_type", 
-                       when(df["day_of_week"].isin([1, 7]), "Weekend").otherwise("Weekday"))
+                       when(df["day_of_week"].isin([1, 7]), 
+                            "Weekend").otherwise("Weekday"))
 
     return df.show()
