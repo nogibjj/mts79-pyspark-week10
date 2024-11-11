@@ -12,8 +12,7 @@ This repository contains materials and code for processing and analyzing births 
 - [Usage](#usage)
 - [Features](#features)
 - [Running Tests](#running-tests)
-- [Code Formatting](#code-formatting)
-- [Linting](#linting)
+- [Related Images](#related-images)
 
 ## Overview
 
